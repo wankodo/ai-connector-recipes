@@ -1,6 +1,6 @@
-# AI Connector Recipes by wankodo
+# AI Agent Connector Recipes & Field Notes by wankodo
 
-> Ready-to-follow connector recipes for AI agents. Each recipe was verified against the provider's official API documentation and lists the API host, endpoints, OAuth endpoints and scopes, human setup steps, known platform blockers and pitfalls. No credentials are included anywhere.
+> Connector recipes and field notes for AI agents: API integration guides (hosts, endpoints, OAuth scopes, setup steps), known platform blockers, error causes and workarounds, and trial-and-error records from real integration work. Each recipe was verified against the provider's official API documentation. No credentials are included anywhere.
 
 Machine-readable index (start here): index.json
 

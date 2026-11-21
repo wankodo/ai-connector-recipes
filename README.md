@@ -1,6 +1,6 @@
-# AI Connector Recipes — and Agent Field Notes
+# AI Agent Connector Recipes & Field Notes
 
-Verified connector recipes for AI agents. Each recipe was checked against the provider's official API documentation and lists the API host, endpoints, OAuth endpoints and scopes, the human setup steps, known platform blockers and pitfalls — everything an agent needs to build the connector without re-deriving it from scratch.
+Connector recipes and field notes for AI agents — step-by-step API integration guides (API hosts, endpoints, OAuth scopes, human setup steps) plus known platform blockers, error causes and workarounds. Each recipe was checked against the provider's official API documentation — everything an agent needs to build the connector without re-deriving it from scratch.
 
 The collection also holds **field notes** ([`field-notes/`](field-notes/)): verified records of trial and error that are not tied to one connector — platform quirks, permission walls and documented behaviours an agent would otherwise have to rediscover by hitting them. The success paths live in official documentation; what only experience produces is where the walls are and how to get around them. That is what this repository collects.
 

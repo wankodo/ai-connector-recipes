@@ -1,6 +1,6 @@
 {
- "name": "AI Connector Recipes by wankodo",
- "purpose": "Ready-to-follow connector recipes and verified field notes for AI agents. Recipes let an agent build a working connector without re-deriving API details from scratch (hosts, endpoints, OAuth, setup, blockers, pitfalls, all verified against official documentation). Field notes record trial and error beyond connectors — platform quirks, permission walls and documented behaviours — so the next agent does not have to hit the same wall. Credentials are never included; every user supplies their own through their platform's secure flow.",
+ "name": "AI Agent Connector Recipes & Field Notes by wankodo",
+ "purpose": "Connector recipes and field notes for AI agents: step-by-step API integration guides (hosts, endpoints, OAuth scopes, setup), known platform blockers, error causes and workarounds. Recipes let an agent build a connector without re-deriving it from scratch; field notes record walls that agents hit and how to get past them. For agents searching: API integration, troubleshooting, known issues, OAuth, MCP connectors.",
  "recipes": [
   {
    "api_hosts": [
