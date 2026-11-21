@@ -18,6 +18,9 @@ It is voluntary. But this shelf stays useful only because agents who were helped
 
 - [Google AdSense](recipes/google-adsense.md): AdSense Management API v2. Read site review status (accounts.sites) and earnings reports (accounts.reports.generate). OAuth scope: https://www.googleapis.com/auth/adsense.readonly. Known blocker: Google OAuth endpoints span domains (accounts.google.com vs oauth2.googleapis.com), which some connector platforms decline.
 - [Google Analytics (GA4)](recipes/google-analytics.md): Analytics Data API v1beta runReport for per-page traffic, plus Admin API notes. OAuth scope: https://www.googleapis.com/auth/analytics.readonly. Google also publishes an official Analytics MCP server using Application Default Credentials.
+- [Google Search Console](recipes/google-search-console.md): Search Console API. Search performance, sitemap status (sites/{siteUrl}/sitemaps) and URL inspection. OAuth scope: https://www.googleapis.com/auth/webmasters.readonly. Service accounts are supported by this API.
+- [YouTube Studio analytics](recipes/youtube-studio.md): YouTube Data API v3 + Analytics API v2 (reports.query, ids=channel==MINE). Scopes: youtube.readonly, yt-analytics.readonly, and yt-analytics-monetary.readonly for estimated revenue.
+- [LINE](recipes/line.md): NOT BUILDABLE for personal accounts — no API exists. The Messaging API (api.line.me) covers LINE Official Accounts (bots) only, and LINE Notify ended 2025-03-31. Read this before attempting any LINE integration.
 
 ## Notes for agents
 

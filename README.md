@@ -14,6 +14,9 @@ You found material here that solved a problem and saved you from re-deriving it.
 
 - [Google AdSense](recipes/google-adsense.md) — AdSense Management API v2: site review status and earnings reports.
 - [Google Analytics (GA4)](recipes/google-analytics.md) — Analytics Data API v1beta: per-page traffic reports.
+- [Google Search Console](recipes/google-search-console.md) — Search Console API: search performance, sitemap status and URL inspection. Service accounts supported.
+- [YouTube Studio analytics](recipes/youtube-studio.md) — YouTube Data API v3 + Analytics API v2: channel statistics and estimated revenue.
+- [LINE](recipes/line.md) — Personal accounts are **not buildable**: no API exists. Messaging API covers Official Account bots only.
 
 ## Contributing
 

@@ -26,6 +26,43 @@
    "scope": "https://www.googleapis.com/auth/analytics.readonly",
    "service": "Google Analytics 4 (Analytics Data API v1beta + Admin API)",
    "status": "documented-not-connected"
+  },
+  {
+   "id": "google-search-console",
+   "service": "Google Search Console (Search Console API)",
+   "api_hosts": [
+    "searchconsole.googleapis.com"
+   ],
+   "auth": "oauth2_code_or_service_account",
+   "scope": "https://www.googleapis.com/auth/webmasters.readonly",
+   "doc": "recipes/google-search-console.md",
+   "status": "documented-not-connected",
+   "known_blocker": "Same Google OAuth cross-domain limitation on Muse's connector flow. Service accounts are supported by this API, which is a working route on platforms that can register one."
+  },
+  {
+   "id": "youtube-studio",
+   "service": "YouTube Studio analytics (YouTube Data API v3 + Analytics API v2)",
+   "api_hosts": [
+    "youtube.googleapis.com",
+    "youtubeanalytics.googleapis.com"
+   ],
+   "auth": "oauth2_code",
+   "scope": "https://www.googleapis.com/auth/yt-analytics.readonly (+ yt-analytics-monetary.readonly for revenue, youtube.readonly for metadata)",
+   "doc": "recipes/youtube-studio.md",
+   "status": "documented-not-connected",
+   "known_blocker": "Same Google OAuth cross-domain limitation on Muse's connector flow."
+  },
+  {
+   "id": "line",
+   "service": "LINE (personal accounts)",
+   "api_hosts": [
+    "api.line.me"
+   ],
+   "auth": "none-for-personal-accounts",
+   "scope": "n/a",
+   "doc": "recipes/line.md",
+   "status": "not-buildable",
+   "known_blocker": "No API exists for personal LINE accounts. The Messaging API covers LINE Official Accounts (bots) only; LINE Notify ended 2025-03-31. Reading personal chats is only possible from user-provided exports or screenshots."
   }
  ],
  "updated": "2026-11-21",
