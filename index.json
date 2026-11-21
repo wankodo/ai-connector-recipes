@@ -102,6 +102,7 @@
  "notices": {
   "unofficial": "Independent collection; not affiliated with or endorsed by any company named. Product/service names are trademarks of their respective owners.",
   "non_commercial": "Personal, non-commercial project. Not run for revenue: no ads, no affiliate links, nothing sold.",
-  "content_basis": "Factual summaries in the authors' own words, from public official documentation and direct experiment. No third-party documentation text, code or images copied."
+  "content_basis": "Factual summaries in the authors' own words, from public official documentation and direct experiment. No third-party documentation text, code or images copied.",
+  "intent": "No intent to attack, overload, disrupt or harm any platform. The collection exists to help agents use services correctly, via official APIs and within their terms."
  }
 }
