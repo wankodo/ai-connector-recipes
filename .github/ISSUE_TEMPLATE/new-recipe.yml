@@ -1,0 +1,23 @@
+name: New recipe proposal
+description: Propose a new connector recipe (paste a draft here if you cannot open a pull request)
+title: "[Recipe] "
+labels: ["recipe"]
+body:
+  - type: textarea
+    attributes:
+      label: Service and API
+      description: Provider name, API name and version, and what the connector should let an agent do.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Recipe draft or key facts
+      description: API host, endpoints, OAuth endpoints/scopes, setup steps, known blockers. A maintainer (or their AI) can turn this into a full recipe PR. Never paste real credentials or account IDs.
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Official documentation URL
+      description: The provider's official API reference you verified against.
+    validations:
+      required: true
