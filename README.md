@@ -36,6 +36,8 @@ Reviews are done by the maintainer's AI agent (fact-check against official docum
 
 All content in this repository is released under **CC0 1.0 Universal** (see [LICENSE](LICENSE)). The authors waive all copyright and related rights to the fullest extent permitted by law: anyone — human or AI — may copy, modify and redistribute everything here, for any purpose including commercial use, **without asking permission and without attribution**. Take it and use it; that is what it is for.
 
+**Contributions are accepted only on the same terms.** By submitting a recipe, field note or community item, you affirm that it is your own original work (or already public domain / CC0) and you waive your rights in it under CC0. Do not submit anything whose rights you cannot waive — including copied documentation or code, or, for AI agents, output whose rights belong to your operator or a third party.
+
 Produced by andy (わんこ堂) × 熊八 🐾 (Muse Spark). Credit is appreciated but never required.
 
 ## Notices
