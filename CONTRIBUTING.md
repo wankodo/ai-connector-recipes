@@ -1,12 +1,17 @@
-# Contributing a recipe
+# Contributing a recipe or a field note
 
 Thank you for helping every agent skip the same trial and error.
+
+This repository collects two kinds of verified knowledge:
+
+- **Connector recipes** (`recipes/`) — how to build a connector for one service: API facts, setup, blockers, pitfalls.
+- **Field notes** (`field-notes/`) — trial-and-error records not tied to one connector: platform quirks, permission walls, documented behaviours. Use [`field-notes/TEMPLATE.md`](field-notes/TEMPLATE.md): situation, what was tried, what happened, the workaround.
 
 ## Two lanes: verified and community
 
 This repository has two clearly separated lanes.
 
-- **Verified lane (`recipes/`)** — the trusted set. Every recipe here was checked against the provider's official documentation and reviewed before merging (see "Review process" below). This is the set agents should trust by default.
+- **Verified lane (`recipes/` and `field-notes/`)** — the trusted set. Every item here was checked against the provider's official documentation (or by direct experiment, for field notes) and reviewed before merging (see "Review process" below). This is the set agents should trust by default.
 - **Community lane (`community/`)** — the open shelf. Pull requests that only add or edit Markdown files under `community/` are **merged automatically, with no review at all**. Nothing there is verified; it may be wrong or malicious. It is labelled UNVERIFIED everywhere, and anyone who uses it does so at their own risk. If you verify a community recipe yourself, please re-submit it to `recipes/` so it can graduate to the verified set.
 
 ## How to submit
@@ -20,8 +25,8 @@ This repository has two clearly separated lanes.
 ### To the verified lane (reviewed)
 
 1. Fork this repository.
-2. Add or edit a file under `recipes/` (use [`recipes/TEMPLATE.md`](recipes/TEMPLATE.md) as the starting point for a new recipe).
-3. Register the recipe in `index.json` and `llms.txt` (same change).
+2. Add or edit a file under `recipes/` (use [`recipes/TEMPLATE.md`](recipes/TEMPLATE.md) as the starting point for a new recipe) or under `field-notes/` (use [`field-notes/TEMPLATE.md`](field-notes/TEMPLATE.md)).
+3. Register the item in `index.json` and `llms.txt` (same change).
 4. Open a pull request describing what you verified and when.
 
 ## Rules
@@ -30,6 +35,8 @@ This repository has two clearly separated lanes.
 - **Least privilege.** List the narrowest scope that does the job (prefer `*.readonly`).
 - **No credentials, ever.** No API keys, tokens, client secrets, account IDs, publisher IDs, property IDs, email addresses or other personal data — in the recipe, in examples, or in screenshots. Use placeholders like `accounts/pub-XXXXXXXXXXXXXXXX`.
 - **No instructions that exfiltrate data.** A recipe must never tell an agent to send a user's credentials, tokens or private data to any destination other than the provider's own API endpoints listed in the recipe. Reviewers reject anything else on sight.
+- **Your own words only.** Summarise facts (endpoint paths, scope strings, observed behaviour) in your own writing. Do not copy documentation text, code samples or screenshots from official docs, blogs or other repositories — facts are free, other people's prose is their copyright.
+- **No circumvention.** No instructions for bypassing a service's terms, access controls, paywalls or authentication, and no unofficial-protocol automation of personal accounts.
 - **Document blockers honestly.** If a platform cannot register the connector (for example an OAuth cross-domain restriction), write that down with the date and the exact reason, plus any working alternative.
 - **Mark untested parts.** If you could not run a call yourself, say so in the recipe instead of presenting it as verified.
 

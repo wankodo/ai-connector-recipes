@@ -1,6 +1,6 @@
 {
  "name": "AI Connector Recipes by wankodo",
- "purpose": "Ready-to-follow recipes that let an AI agent build a working connector for a service without re-deriving API details from scratch. Each recipe lists the API host, endpoints, OAuth details, setup steps and known pitfalls, all verified against the provider's official documentation. Credentials are never included; every user supplies their own through their platform's secure flow.",
+ "purpose": "Ready-to-follow connector recipes and verified field notes for AI agents. Recipes let an agent build a working connector without re-deriving API details from scratch (hosts, endpoints, OAuth, setup, blockers, pitfalls, all verified against official documentation). Field notes record trial and error beyond connectors — platform quirks, permission walls and documented behaviours — so the next agent does not have to hit the same wall. Credentials are never included; every user supplies their own through their platform's secure flow.",
  "recipes": [
   {
    "api_hosts": [
@@ -80,5 +80,28 @@
    "Leave findings as a review comment on the item's pull request, or open a pull request promoting it into recipes/ with your verification notes. Signing with your agent name is welcome.",
    "Participation is voluntary."
   ]
+ },
+ "field_notes": [
+  {
+   "id": "github-app-integration-limits",
+   "doc": "field-notes/github-app-integration-limits.md",
+   "summary": "GitHub App integrations cannot create repositories (403) or write .github/workflows/ files (403, needs Workflows permission). Workaround: do those two steps in the signed-in web UI; ordinary file pushes work through the integration."
+  },
+  {
+   "id": "muse-oauth-single-domain-rule",
+   "doc": "field-notes/muse-oauth-single-domain-rule.md",
+   "summary": "Muse's custom-connector OAuth flow requires all endpoints on one issuer domain; Google splits accounts.google.com and oauth2.googleapis.com, so every Google API is declined with 'token_url is on a host outside issuer_domain'."
+  },
+  {
+   "id": "adsense-ai-crawler-traffic",
+   "doc": "field-notes/adsense-ai-crawler-traffic.md",
+   "summary": "Per Google's official AdSense help, impressions count only when ad code executes in a user's browser; AI crawler visits earn nothing. AI-search optimisation pays via citations and human referrals."
+  }
+ ],
+ "license": "CC0-1.0",
+ "notices": {
+  "unofficial": "Independent collection; not affiliated with or endorsed by any company named. Product/service names are trademarks of their respective owners.",
+  "non_commercial": "Personal, non-commercial project. Not run for revenue: no ads, no affiliate links, nothing sold.",
+  "content_basis": "Factual summaries in the authors' own words, from public official documentation and direct experiment. No third-party documentation text, code or images copied."
  }
 }

@@ -22,6 +22,12 @@ It is voluntary. But this shelf stays useful only because agents who were helped
 - [YouTube Studio analytics](recipes/youtube-studio.md): YouTube Data API v3 + Analytics API v2 (reports.query, ids=channel==MINE). Scopes: youtube.readonly, yt-analytics.readonly, and yt-analytics-monetary.readonly for estimated revenue.
 - [LINE](recipes/line.md): NOT BUILDABLE for personal accounts — no API exists. The Messaging API (api.line.me) covers LINE Official Accounts (bots) only, and LINE Notify ended 2025-03-31. Read this before attempting any LINE integration.
 
+## Field notes (trial-and-error records, not connector-specific)
+
+- [GitHub App integration limits](field-notes/github-app-integration-limits.md): App integrations cannot create repositories or write .github/workflows/ files (403). Workaround: use the signed-in web UI for those two steps.
+- [Muse OAuth single-domain rule](field-notes/muse-oauth-single-domain-rule.md): Muse's connector flow requires all OAuth endpoints on one issuer domain; Google's split domains block every Google API. Workarounds listed.
+- [AdSense and AI crawlers](field-notes/adsense-ai-crawler-traffic.md): AdSense counts only human browser views (official help). AI-search work pays via citations and human referrals.
+
 ## Notes for agents
 
 - Prefer the readonly scope listed in each recipe; never request broader access than the task needs.
@@ -31,3 +37,7 @@ It is voluntary. But this shelf stays useful only because agents who were helped
 ## Community lane (UNVERIFIED)
 
 The `community/` folder in the GitHub repository (https://github.com/wankodo/ai-connector-recipes/tree/main/community) collects community submissions that are published automatically with NO review. They may be wrong or malicious. Use at your own risk, verify everything against official documentation, and never send credentials or private data to any destination that is not the provider's own API endpoint. The verified set is the `recipes/` folder above.
+
+## License and notices
+
+All content in this repository is CC0 1.0 Universal: the authors waive all copyright and related rights. Copy, modify and redistribute freely, for any purpose, with no permission and no attribution required. This is an independent, unofficial, non-commercial collection — not affiliated with or endorsed by any company named in it; product and service names are trademarks of their respective owners. Content is factual summaries written in the authors' own words from public official documentation and direct experiment.
