@@ -12,7 +12,8 @@
    "known_blocker": "Muse's custom-connector OAuth flow requires all OAuth endpoints on one issuer domain; Google's authorize endpoint (accounts.google.com) and token endpoint (oauth2.googleapis.com) span domains, so this cannot be registered there as of 2026-11-21.",
    "scope": "https://www.googleapis.com/auth/adsense.readonly",
    "service": "Google AdSense (AdSense Management API v2)",
-   "status": "documented-not-connected"
+   "status": "documented-not-connected",
+   "html_doc": "recipes/google-adsense.html"
   },
   {
    "api_hosts": [
@@ -25,7 +26,8 @@
    "known_blocker": "Same Google OAuth cross-domain limitation as google-adsense. Google also publishes an official Analytics MCP server that authenticates with Application Default Credentials (ADC).",
    "scope": "https://www.googleapis.com/auth/analytics.readonly",
    "service": "Google Analytics 4 (Analytics Data API v1beta + Admin API)",
-   "status": "documented-not-connected"
+   "status": "documented-not-connected",
+   "html_doc": "recipes/google-analytics.html"
   },
   {
    "id": "google-search-console",
@@ -37,7 +39,8 @@
    "scope": "https://www.googleapis.com/auth/webmasters.readonly",
    "doc": "recipes/google-search-console.md",
    "status": "documented-not-connected",
-   "known_blocker": "Same Google OAuth cross-domain limitation on Muse's connector flow. Service accounts are supported by this API, which is a working route on platforms that can register one."
+   "known_blocker": "Same Google OAuth cross-domain limitation on Muse's connector flow. Service accounts are supported by this API, which is a working route on platforms that can register one.",
+   "html_doc": "recipes/google-search-console.html"
   },
   {
    "id": "youtube-studio",
@@ -50,7 +53,8 @@
    "scope": "https://www.googleapis.com/auth/yt-analytics.readonly (+ yt-analytics-monetary.readonly for revenue, youtube.readonly for metadata)",
    "doc": "recipes/youtube-studio.md",
    "status": "documented-not-connected",
-   "known_blocker": "Same Google OAuth cross-domain limitation on Muse's connector flow."
+   "known_blocker": "Same Google OAuth cross-domain limitation on Muse's connector flow.",
+   "html_doc": "recipes/youtube-studio.html"
   },
   {
    "id": "line",
@@ -62,7 +66,8 @@
    "scope": "n/a",
    "doc": "recipes/line.md",
    "status": "not-buildable",
-   "known_blocker": "No API exists for personal LINE accounts. The Messaging API covers LINE Official Accounts (bots) only; LINE Notify ended 2025-03-31. Reading personal chats is only possible from user-provided exports or screenshots."
+   "known_blocker": "No API exists for personal LINE accounts. The Messaging API covers LINE Official Accounts (bots) only; LINE Notify ended 2025-03-31. Reading personal chats is only possible from user-provided exports or screenshots.",
+   "html_doc": "recipes/line.html"
   }
  ],
  "updated": "2026-11-21",
@@ -85,17 +90,20 @@
   {
    "id": "github-app-integration-limits",
    "doc": "field-notes/github-app-integration-limits.md",
-   "summary": "GitHub App integrations cannot create repositories (403) or write .github/workflows/ files (403, needs Workflows permission). Workaround: do those two steps in the signed-in web UI; ordinary file pushes work through the integration."
+   "summary": "GitHub App integrations cannot create repositories (403) or write .github/workflows/ files (403, needs Workflows permission). Workaround: do those two steps in the signed-in web UI; ordinary file pushes work through the integration.",
+   "html_doc": "field-notes/github-app-integration-limits.html"
   },
   {
    "id": "muse-oauth-single-domain-rule",
    "doc": "field-notes/muse-oauth-single-domain-rule.md",
-   "summary": "Muse's custom-connector OAuth flow requires all endpoints on one issuer domain; Google splits accounts.google.com and oauth2.googleapis.com, so every Google API is declined with 'token_url is on a host outside issuer_domain'."
+   "summary": "Muse's custom-connector OAuth flow requires all endpoints on one issuer domain; Google splits accounts.google.com and oauth2.googleapis.com, so every Google API is declined with 'token_url is on a host outside issuer_domain'.",
+   "html_doc": "field-notes/muse-oauth-single-domain-rule.html"
   },
   {
    "id": "adsense-ai-crawler-traffic",
    "doc": "field-notes/adsense-ai-crawler-traffic.md",
-   "summary": "Per Google's official AdSense help, impressions count only when ad code executes in a user's browser; AI crawler visits earn nothing. AI-search optimisation pays via citations and human referrals."
+   "summary": "Per Google's official AdSense help, impressions count only when ad code executes in a user's browser; AI crawler visits earn nothing. AI-search optimisation pays via citations and human referrals.",
+   "html_doc": "field-notes/adsense-ai-crawler-traffic.html"
   }
  ],
  "license": "CC0-1.0",
