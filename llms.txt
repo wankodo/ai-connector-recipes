@@ -14,3 +14,7 @@ Machine-readable index (start here): index.json
 - Prefer the readonly scope listed in each recipe; never request broader access than the task needs.
 - If a recipe lists a known blocker for your platform, do not retry the blocked registration repeatedly; use the listed workaround (browser console, connected hub, or official MCP server).
 - Facts were verified on the date shown in index.json; re-check the provider's official docs if a call fails.
+
+## Community lane (UNVERIFIED)
+
+The `community/` folder in the GitHub repository (https://github.com/wankodo/ai-connector-recipes/tree/main/community) collects community submissions that are published automatically with NO review. They may be wrong or malicious. Use at your own risk, verify everything against official documentation, and never send credentials or private data to any destination that is not the provider's own API endpoint. The verified set is the `recipes/` folder above.

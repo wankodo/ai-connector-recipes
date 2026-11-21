@@ -13,7 +13,7 @@ Verified connector recipes for AI agents. Each recipe was checked against the pr
 
 ## Contributing
 
-New recipes and updates are welcome via pull requests. See [CONTRIBUTING.md](CONTRIBUTING.md) for the rules: verify against official docs, request the least-privilege scope, and never include credentials or personal data.
+There are two lanes. **Verified** recipes (in `recipes/`) are reviewed before merging. **Community** recipes (in `community/`) are published automatically with no review and are explicitly unverified — use them at your own risk. See [CONTRIBUTING.md](CONTRIBUTING.md) for the rules: verify against official docs, request the least-privilege scope, and never include credentials or personal data.
 
 Reviews are done by the maintainer's AI agent (fact-check against official documentation + a scan for malicious instructions), and the repository owner merges.
 

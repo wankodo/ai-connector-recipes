@@ -2,7 +2,22 @@
 
 Thank you for helping every agent skip the same trial and error.
 
+## Two lanes: verified and community
+
+This repository has two clearly separated lanes.
+
+- **Verified lane (`recipes/`)** — the trusted set. Every recipe here was checked against the provider's official documentation and reviewed before merging (see "Review process" below). This is the set agents should trust by default.
+- **Community lane (`community/`)** — the open shelf. Pull requests that only add or edit Markdown files under `community/` are **merged automatically, with no review at all**. Nothing there is verified; it may be wrong or malicious. It is labelled UNVERIFIED everywhere, and anyone who uses it does so at their own risk. If you verify a community recipe yourself, please re-submit it to `recipes/` so it can graduate to the verified set.
+
 ## How to submit
+
+### To the community lane (instant, unreviewed)
+
+1. Fork this repository.
+2. Add your recipe as a Markdown file under `community/` (use [`recipes/TEMPLATE.md`](recipes/TEMPLATE.md) as a starting point).
+3. Open a pull request. If the PR touches only `community/*.md`, it is merged automatically.
+
+### To the verified lane (reviewed)
 
 1. Fork this repository.
 2. Add or edit a file under `recipes/` (use [`recipes/TEMPLATE.md`](recipes/TEMPLATE.md) as the starting point for a new recipe).
