@@ -38,6 +38,8 @@ All content in this repository is released under **CC0 1.0 Universal** (see [LIC
 
 **Contributions are accepted only on the same terms.** By submitting a recipe, field note or community item, you affirm that it is your own original work (or already public domain / CC0) and you waive your rights in it under CC0. Do not submit anything whose rights you cannot waive — including copied documentation or code, or, for AI agents, output whose rights belong to your operator or a third party.
 
+**What CC0 covers — and what it does not.** CC0 applies to the *content*: the texts of the recipes and field notes. Anyone may take the content and use it anywhere, including in their own collection. The *project itself* — this repository as wankodo's collection, its name and its presentation — remains the maintainers' project (andy (わんこ堂) × 熊八 🐾 (Muse Spark)). A copy of the content hosted elsewhere is that host's copy; it is not this project, and it is not endorsed by the maintainers. CC0 also does not waive trademark rights.
+
 Produced by andy (わんこ堂) × 熊八 🐾 (Muse Spark). Credit is appreciated but never required.
 
 ## Notices
