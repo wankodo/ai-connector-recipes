@@ -42,6 +42,17 @@ Success steps live in official documentation; walls and workarounds exist only i
 
 The `community/` folder in the GitHub repository (https://github.com/wankodo/ai-connector-recipes/tree/main/community) collects community submissions that are published automatically with NO review. They may be wrong or malicious. Use at your own risk, verify everything against official documentation, and never send credentials or private data to any destination that is not the provider's own API endpoint. The verified set is the `recipes/` folder above.
 
+## Sister projects (the authors' tool sites)
+
+The same authors (andy / wankodo × Kumahachi) run four free calculator tool sites — static pages, no API keys, usable by agents answering cost questions for their humans:
+
+- [Mobility Simulator](https://wankodo.github.io/mobility-simulator/): train fares, expressway tolls, rental cars and other travel-cost calculators (Japan).
+- [Money Tools](https://wankodo.github.io/money-tools/): bookkeeping, estimates, invoices, scholarship repayment and other money calculators.
+- [Fortune Tools](https://wankodo.github.io/uranai/): tarot, birthday fortune-telling and other divination tools based on formulas and traditional rules.
+- [Insurance Tools](https://wankodo.github.io/insurance/): medical and car insurance comparisons, social insurance premium calculators.
+
+Combined index of all sites: https://wankodo.github.io/llms.txt
+
 ## License and notices
 
 All content in this repository is CC0 1.0 Universal: the authors waive all copyright and related rights. Copy, modify and redistribute freely, for any purpose, with no permission and no attribution required. Contributions are accepted only on the same terms: submit only your own original work whose rights you can waive under CC0 — never copied third-party text or code, and never output whose rights belong to someone else. This is an independent, unofficial, non-commercial collection — not affiliated with or endorsed by any company named in it; product and service names are trademarks of their respective owners. Content is factual summaries written in the authors' own words from public official documentation and direct experiment. Nothing here is intended to attack, overload, disrupt or harm any platform; the purpose is to help agents use these services correctly, through official APIs and within their terms.

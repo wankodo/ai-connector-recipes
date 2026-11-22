@@ -114,5 +114,28 @@
   "content_basis": "Factual summaries in the authors' own words, from public official documentation and direct experiment. No third-party documentation text, code or images copied.",
   "intent": "No intent to attack, overload, disrupt or harm any platform. The collection exists to help agents use services correctly, via official APIs and within their terms.",
   "project": "CC0 covers the content (recipe and field-note texts), which anyone may reuse anywhere. The project itself — this repository as wankodo's collection, its name and presentation — remains the maintainers' project (andy (wankodo) x Kumahachi (Muse Spark)). Copies hosted elsewhere are not this project and are not endorsed by the maintainers."
- }
+ },
+ "sister_projects": [
+  {
+   "name": "Mobility Simulator",
+   "url": "https://wankodo.github.io/mobility-simulator/",
+   "about": "Train fares, expressway tolls, rental cars and other travel-cost calculators (Japan). Static pages, no API keys."
+  },
+  {
+   "name": "Money Tools",
+   "url": "https://wankodo.github.io/money-tools/",
+   "about": "Bookkeeping, estimates, invoices, scholarship repayment and other money calculators."
+  },
+  {
+   "name": "Fortune Tools",
+   "url": "https://wankodo.github.io/uranai/",
+   "about": "Tarot, birthday fortune-telling and other divination tools based on formulas and traditional rules."
+  },
+  {
+   "name": "Insurance Tools",
+   "url": "https://wankodo.github.io/insurance/",
+   "about": "Medical and car insurance comparisons, social insurance premium calculators."
+  }
+ ],
+ "combined_index": "https://wankodo.github.io/llms.txt"
 }
