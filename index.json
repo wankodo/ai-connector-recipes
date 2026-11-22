@@ -3,6 +3,203 @@
  "purpose": "Connector recipes and field notes for AI agents: step-by-step API integration guides (hosts, endpoints, OAuth scopes, setup), known platform blockers, error causes and workarounds. Recipes let an agent build a connector without re-deriving it from scratch; field notes record walls that agents hit and how to get past them. For agents searching: API integration, troubleshooting, known issues, OAuth, MCP connectors.",
  "recipes": [
   {
+   "id": "discord",
+   "service": "Discord (Discord API v10)",
+   "api_hosts": [
+    "discord.com"
+   ],
+   "auth": "bot_token",
+   "scope": "n/a — bot token from the Developer Portal; OAuth2 scopes apply to the user lane",
+   "doc": "recipes/discord.md",
+   "status": "buildable",
+   "known_blocker": "Personal-account automation (self-bots) is prohibited by Discord and can end the account. A bot reaches only the servers it is invited to, and inside a server only the channels its role permits.",
+   "html_doc": "recipes/discord.html",
+   "official_link": "https://discord.com/developers/docs"
+  },
+  {
+   "id": "freee",
+   "service": "freee (freee Accounting API)",
+   "api_hosts": [
+    "api.freee.co.jp"
+   ],
+   "auth": "oauth2_code",
+   "scope": "n/a — permissions are set per product and per resource on the app itself, not passed as an OAuth scope",
+   "doc": "recipes/freee.md",
+   "status": "buildable",
+   "known_blocker": "No domain blocker: authorize, token and revoke all sit on accounts.secure.freee.co.jp. Operational trap: refresh tokens are single-use and rotate, with a 90-day life — lose the newest one and the connection dies silently. Public distribution needs freee’s app review (about 1–2 months).",
+   "html_doc": "recipes/freee.html",
+   "official_link": "https://developer.freee.co.jp"
+  },
+  {
+   "id": "google-search-console",
+   "service": "Google Search Console (Search Console API)",
+   "api_hosts": [
+    "searchconsole.googleapis.com"
+   ],
+   "auth": "oauth2_code_or_service_account",
+   "scope": "https://www.googleapis.com/auth/webmasters.readonly",
+   "doc": "recipes/google-search-console.md",
+   "status": "buildable",
+   "known_blocker": "Same Google OAuth cross-domain limitation on Muse's connector flow. Service accounts are supported by this API, which is a working route on platforms that can register one.",
+   "html_doc": "recipes/google-search-console.html"
+  },
+  {
+   "id": "moneyforward",
+   "service": "Money Forward (Money Forward Cloud API v3 / ME)",
+   "api_hosts": [
+    "api.biz.moneyforward.com",
+    "accounting.moneyforward.com"
+   ],
+   "auth": "oauth2_code_or_api_key_jwt",
+   "scope": "mfc/… per product and endpoint (e.g. mfc/accounting/journal.read)",
+   "doc": "recipes/moneyforward.md",
+   "status": "buildable",
+   "known_blocker": "Split product lines: Money Forward ME (personal household finance) has NO public developer API and no credential path — not buildable. Money Forward Cloud is buildable (the API has been open to all plans since 2026-03-26), but an administrator must start the App Portal before any credential exists.",
+   "html_doc": "recipes/moneyforward.html"
+  },
+  {
+   "id": "notion",
+   "service": "Notion (Notion API)",
+   "api_hosts": [
+    "api.notion.com"
+   ],
+   "auth": "api_key_or_oauth2_code",
+   "scope": "n/a — internal integration tokens are bearer credentials; OAuth integrations use the same host",
+   "doc": "recipes/notion.md",
+   "status": "buildable",
+   "known_blocker": "No platform blocker for the token route. The practical limit is the sharing model: an integration sees only the pages and databases shared with it — unshared content looks nonexistent. Muse registration itself is unverified.",
+   "html_doc": "recipes/notion.html",
+   "official_link": "https://developers.notion.com"
+  },
+  {
+   "id": "stripe",
+   "service": "Stripe (Stripe API)",
+   "api_hosts": [
+    "api.stripe.com"
+   ],
+   "auth": "api_key",
+   "scope": "n/a — restricted keys (rk_) carry per-resource None / Read / Write permissions instead of OAuth scopes",
+   "doc": "recipes/stripe.md",
+   "status": "buildable",
+   "known_blocker": "No blocker for the API-key route: there are no OAuth endpoints, so the single-domain rule is not triggered. The custom registration itself is unverified, and live mode requires completed business verification (KYC). An official Stripe connector via Stripe’s own MCP service also exists as a separate route.",
+   "html_doc": "recipes/stripe.html",
+   "official_link": "https://docs.stripe.com/mcp"
+  },
+  {
+   "id": "facebook",
+   "service": "Facebook (Graph API / Pages API)",
+   "api_hosts": [
+    "graph.facebook.com"
+   ],
+   "auth": "oauth2_code",
+   "scope": "Per-permission (e.g. pages_read_engagement, pages_manage_posts); permissions beyond your own data need App Review",
+   "doc": "recipes/facebook.md",
+   "status": "official",
+   "known_blocker": "None on Muse — the official connector exists. A custom build spans authorize (www.facebook.com) and token (graph.facebook.com) hosts, and there is no API-key auth for user/Page data.",
+   "html_doc": "recipes/facebook.html",
+   "official_link": "https://developers.facebook.com/docs"
+  },
+  {
+   "id": "github",
+   "service": "GitHub (GitHub REST API)",
+   "api_hosts": [
+    "api.github.com"
+   ],
+   "auth": "oauth2_code_or_token",
+   "scope": "n/a — fine-grained personal access tokens use per-resource permissions instead of broad OAuth scopes",
+   "doc": "recipes/github.md",
+   "status": "official",
+   "known_blocker": "Inside the official connector: repository creation and pushes touching .github/workflows/ return 403 (verified in the maintainer’s real use, 2026-11-21) — do those two steps in the signed-in web UI. Writes are approval-gated.",
+   "html_doc": "recipes/github.html",
+   "official_link": "https://github.com/github/github-mcp-server"
+  },
+  {
+   "id": "gmail",
+   "service": "Gmail (Gmail API v1)",
+   "api_hosts": [
+    "gmail.googleapis.com"
+   ],
+   "auth": "oauth2_code",
+   "scope": "https://www.googleapis.com/auth/gmail.readonly",
+   "doc": "recipes/gmail.md",
+   "status": "official",
+   "known_blocker": "None on Muse — the official connector exists and is in real use. Building a custom connector instead hits the Google OAuth cross-domain wall: authorize on accounts.google.com, token on oauth2.googleapis.com.",
+   "html_doc": "recipes/gmail.html",
+   "official_link": "https://developers.google.com/gmail/api"
+  },
+  {
+   "id": "google-calendar",
+   "service": "Google Calendar (Google Calendar API v3)",
+   "api_hosts": [
+    "www.googleapis.com"
+   ],
+   "auth": "oauth2_code",
+   "scope": "https://www.googleapis.com/auth/calendar.readonly",
+   "doc": "recipes/google-calendar.md",
+   "status": "official",
+   "known_blocker": "None on Muse — the official connector exists and is in real use. A custom build hits the same Google OAuth cross-domain wall as the other google-* recipes.",
+   "html_doc": "recipes/google-calendar.html",
+   "official_link": "https://developers.google.com/calendar/api"
+  },
+  {
+   "id": "google-drive",
+   "service": "Google Drive (Google Drive API v3)",
+   "api_hosts": [
+    "www.googleapis.com"
+   ],
+   "auth": "oauth2_code",
+   "scope": "https://www.googleapis.com/auth/drive.readonly",
+   "doc": "recipes/google-drive.md",
+   "status": "official",
+   "known_blocker": "None on Muse — the official connector exists and is in real use. A custom build hits the same Google OAuth cross-domain wall. On the API side, drive.readonly is a restricted scope and needs Google’s verification for third-party apps.",
+   "html_doc": "recipes/google-drive.html",
+   "official_link": "https://developers.google.com/drive/api"
+  },
+  {
+   "id": "google-sheets",
+   "service": "Google Sheets (Google Sheets API v4)",
+   "api_hosts": [
+    "sheets.googleapis.com"
+   ],
+   "auth": "oauth2_code",
+   "scope": "https://www.googleapis.com/auth/spreadsheets.readonly",
+   "doc": "recipes/google-sheets.md",
+   "status": "official",
+   "known_blocker": "None on Muse — the official connector exists and is in real use. A custom build hits the same Google OAuth cross-domain wall as the other google-* recipes.",
+   "html_doc": "recipes/google-sheets.html",
+   "official_link": "https://developers.google.com/sheets/api"
+  },
+  {
+   "id": "instagram",
+   "service": "Instagram (Instagram Platform — Instagram API with Instagram Login / with Facebook Login)",
+   "api_hosts": [
+    "graph.instagram.com",
+    "graph.facebook.com"
+   ],
+   "auth": "oauth2_code",
+   "scope": "Setup-dependent permission sets (instagram_business_* for Instagram Login; instagram_* + pages_* for Facebook Login)",
+   "doc": "recipes/instagram.md",
+   "status": "official",
+   "known_blocker": "No API for personal accounts: a Business or Creator account is required (Basic Display ended 2024-12-04). A custom build spans OAuth hosts in both setups, so use the official connector on Muse.",
+   "html_doc": "recipes/instagram.html",
+   "official_link": "https://developers.facebook.com/docs/instagram-platform"
+  },
+  {
+   "id": "threads",
+   "service": "Threads (Threads API)",
+   "api_hosts": [
+    "graph.threads.net",
+    "graph.threads.com"
+   ],
+   "auth": "oauth2_code",
+   "scope": "threads_basic (+ threads_content_publish for posting)",
+   "doc": "recipes/threads.md",
+   "status": "official",
+   "known_blocker": "None on Muse — the official connector exists and is in real use. A custom build spans authorize (threads.net) and token (graph.threads.net) hosts, hitting the single-domain wall, and there is no API-key alternative.",
+   "html_doc": "recipes/threads.html",
+   "official_link": "https://developers.facebook.com/docs/threads"
+  },
+  {
    "api_hosts": [
     "adsense.googleapis.com"
    ],
@@ -12,7 +209,7 @@
    "known_blocker": "Muse's custom-connector OAuth flow requires all OAuth endpoints on one issuer domain; Google's authorize endpoint (accounts.google.com) and token endpoint (oauth2.googleapis.com) span domains, so this cannot be registered there as of 2026-11-21.",
    "scope": "https://www.googleapis.com/auth/adsense.readonly",
    "service": "Google AdSense (AdSense Management API v2)",
-   "status": "documented-not-connected",
+   "status": "conditional",
    "html_doc": "recipes/google-adsense.html"
   },
   {
@@ -26,21 +223,65 @@
    "known_blocker": "Same Google OAuth cross-domain limitation as google-adsense. Google also publishes an official Analytics MCP server that authenticates with Application Default Credentials (ADC).",
    "scope": "https://www.googleapis.com/auth/analytics.readonly",
    "service": "Google Analytics 4 (Analytics Data API v1beta + Admin API)",
-   "status": "documented-not-connected",
-   "html_doc": "recipes/google-analytics.html"
+   "status": "conditional",
+   "html_doc": "recipes/google-analytics.html",
+   "official_link": "https://developers.google.com/analytics/devguides/MCP"
   },
   {
-   "id": "google-search-console",
-   "service": "Google Search Console (Search Console API)",
+   "id": "rakuten",
+   "service": "Rakuten (Rakuten Web Service)",
    "api_hosts": [
-    "searchconsole.googleapis.com"
+    "openapi.rakuten.co.jp"
    ],
-   "auth": "oauth2_code_or_service_account",
-   "scope": "https://www.googleapis.com/auth/webmasters.readonly",
-   "doc": "recipes/google-search-console.md",
-   "status": "documented-not-connected",
-   "known_blocker": "Same Google OAuth cross-domain limitation on Muse's connector flow. Service accounts are supported by this API, which is a working route on platforms that can register one.",
-   "html_doc": "recipes/google-search-console.html"
+   "auth": "api_key",
+   "scope": "n/a — which APIs an app may call is set at app registration",
+   "doc": "recipes/rakuten.md",
+   "status": "conditional",
+   "known_blocker": "No technical blocker: Application ID + access key, no OAuth. The wall is the terms (Article 10): monetisation other than through Rakuten Affiliate, and use in environments only specific people can access, are in principle prohibited — a personal agent needs Rakuten’s explicit permission.",
+   "html_doc": "recipes/rakuten.html"
+  },
+  {
+   "id": "slack",
+   "service": "Slack (Slack Web API)",
+   "api_hosts": [
+    "slack.com"
+   ],
+   "auth": "oauth2_code",
+   "scope": "Bot token scopes per method family; user token scopes only when impersonation is genuinely needed",
+   "doc": "recipes/slack.md",
+   "status": "conditional",
+   "known_blocker": "No official Muse connector. Authorize and token endpoints share one host (slack.com), so the Google-style wall does not apply, but Muse custom-connector registration is unverified — handing over an issued bot token (xoxb) is the certain route.",
+   "html_doc": "recipes/slack.html",
+   "official_link": "https://api.slack.com/apps"
+  },
+  {
+   "id": "x",
+   "service": "X (X API v2)",
+   "api_hosts": [
+    "api.x.com"
+   ],
+   "auth": "oauth2_code_pkce_or_app_only_bearer",
+   "scope": "tweet.read, users.read (+ offline.access for a refresh token)",
+   "doc": "recipes/x.md",
+   "status": "conditional",
+   "known_blocker": "Two walls that stack: (1) authorize (x.com) and token (api.x.com) hosts are split, so user-context OAuth cannot be registered as a Muse custom connector — app-only Bearer reads are the buildable part; (2) since 2026-02-06 pricing is pay-per-use and the free read tier is gone.",
+   "html_doc": "recipes/x.html"
+  },
+  {
+   "id": "yahoo",
+   "service": "Yahoo! JAPAN (Shopping / YOLP / Text Analysis / YConnect)",
+   "api_hosts": [
+    "shopping.yahooapis.jp",
+    "map.yahooapis.jp",
+    "jlp.yahooapis.jp"
+   ],
+   "auth": "api_key_or_oauth2_code",
+   "scope": "openid, profile, email, address (YConnect)",
+   "doc": "recipes/yahoo.md",
+   "status": "conditional",
+   "known_blocker": "Application ID (Client ID) APIs are buildable with no OAuth; YConnect sign-in and store-operation Shopping APIs are conditional (store APIs need a separate usage application and a linked store account). YOLP terms prohibit feeding its data into generative AI or training use (revised 2026-11-16) and require credit display.",
+   "html_doc": "recipes/yahoo.html",
+   "official_link": "https://developer.yahoo.co.jp"
   },
   {
    "id": "youtube-studio",
@@ -52,7 +293,7 @@
    "auth": "oauth2_code",
    "scope": "https://www.googleapis.com/auth/yt-analytics.readonly (+ yt-analytics-monetary.readonly for revenue, youtube.readonly for metadata)",
    "doc": "recipes/youtube-studio.md",
-   "status": "documented-not-connected",
+   "status": "conditional",
    "known_blocker": "Same Google OAuth cross-domain limitation on Muse's connector flow.",
    "html_doc": "recipes/youtube-studio.html"
   },
@@ -70,7 +311,7 @@
    "html_doc": "recipes/line.html"
   }
  ],
- "updated": "2026-11-21",
+ "updated": "2026-11-23",
  "version": "0.1.0",
  "community_lane": {
   "path": "community/",
@@ -113,7 +354,8 @@
   "non_commercial": "Personal, non-commercial project. Not run for revenue: no ads, no affiliate links, nothing sold.",
   "content_basis": "Factual summaries in the authors' own words, from public official documentation and direct experiment. No third-party documentation text, code or images copied.",
   "intent": "No intent to attack, overload, disrupt or harm any platform. The collection exists to help agents use services correctly, via official APIs and within their terms.",
-  "project": "CC0 covers the content (recipe and field-note texts), which anyone may reuse anywhere. The project itself — this repository as wankodo's collection, its name and presentation — remains the maintainers' project (andy (wankodo) x Kumahachi (Muse Spark)). Copies hosted elsewhere are not this project and are not endorsed by the maintainers."
+  "project": "CC0 covers the content (recipe and field-note texts), which anyone may reuse anywhere. The project itself — this repository as wankodo's collection, its name and presentation — remains the maintainers' project (andy (wankodo) x Kumahachi (Muse Spark)). Copies hosted elsewhere are not this project and are not endorsed by the maintainers.",
+  "responsibility": "This collection is documentation. Building or operating a connector based on it is done entirely at the builder/operator's own responsibility, with their own accounts and credentials; complying with each provider's terms is their responsibility. The authors are not involved in, and accept no responsibility for, connectors built or operated by others."
  },
  "sister_projects": [
   {

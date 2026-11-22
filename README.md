@@ -14,10 +14,36 @@ You found material here that solved a problem and saved you from re-deriving it.
 
 ## Recipes
 
-- [Google AdSense](recipes/google-adsense.md) — AdSense Management API v2: site review status and earnings reports.
-- [Google Analytics (GA4)](recipes/google-analytics.md) — Analytics Data API v1beta: per-page traffic reports.
+Recipes are tagged with one of four statuses — the tag tells an agent what to do next: **buildable** (build it yourself), **official** (an official connector exists; use that instead), **conditional** (read the conditions before you start), **not-buildable** (do not attempt).
+
+### Buildable
+- [Discord](recipes/discord.md) — Discord API v10: bot-token based. User-account automation (self-bots) is prohibited.
+- [freee](recipes/freee.md) — Accounting freee API: OAuth authorize and token endpoints share one host, so the single-domain rule does not bite. Public distribution needs review.
 - [Google Search Console](recipes/google-search-console.md) — Search Console API: search performance, sitemap status and URL inspection. Service accounts supported.
+- [Money Forward Cloud](recipes/moneyforward.md) — Money Forward Cloud API v3: open to all plans since 2026-03-26. The consumer app Money Forward ME has **no public API**.
+- [Notion](recipes/notion.md) — Notion API: internal integration tokens; only shared pages and databases are visible.
+- [Stripe](recipes/stripe.md) — Stripe API: restricted API keys suit agents. Live mode requires business verification (KYC).
+
+### Official connector available
+- [Gmail](recipes/gmail.md) — Gmail API v1. An official Muse connector exists and is in use; building your own hits Google's cross-domain OAuth rule.
+- [Google Calendar](recipes/google-calendar.md) — Calendar API v3. Official Muse connector available.
+- [Google Drive](recipes/google-drive.md) — Drive API v3. Official Muse connector available; the full-drive scope is restricted.
+- [Google Sheets](recipes/google-sheets.md) — Sheets API v4. Official Muse connector available.
+- [GitHub](recipes/github.md) — GitHub REST API. Official Muse connector in use; repository creation and `.github/workflows/` writes return 403 through it.
+- [Instagram](recipes/instagram.md) — Instagram Platform: Business/Creator accounts only; no personal-account API.
+- [Threads](recipes/threads.md) — Threads API: two-step container publishing; 250 posts per 24 hours.
+- [Facebook](recipes/facebook.md) — Graph API / Pages API: current API surface is Page-centric.
+
+### Conditional
+- [Google AdSense](recipes/google-adsense.md) — AdSense Management API v2: site review status and earnings reports.
+- [Google Analytics (GA4)](recipes/google-analytics.md) — Analytics Data API v1beta: per-page traffic reports. An official Google MCP server (ADC auth) exists as an alternate route.
+- [Rakuten Web Service](recipes/rakuten.md) — App-ID based APIs; the terms of use in principle prohibit personal-only use and non-affiliate monetisation without permission.
+- [Slack](recipes/slack.md) — Slack Web API: same-host OAuth is unverified for custom registration; a pre-issued bot token (xoxb) is the reliable route.
+- [X](recipes/x.md) — X API v2: pay-per-use pricing since 2026-02-06; OAuth is domain-split, Bearer read-only access only.
+- [Yahoo! JAPAN](recipes/yahoo.md) — Shopping / YOLP / text-analysis APIs by app ID. YOLP data must not be used as AI training input; credit display required.
 - [YouTube Studio analytics](recipes/youtube-studio.md) — YouTube Data API v3 + Analytics API v2: channel statistics and estimated revenue.
+
+### Not buildable
 - [LINE](recipes/line.md) — Personal accounts are **not buildable**: no API exists. Messaging API covers Official Account bots only.
 
 ## Field notes
@@ -48,4 +74,5 @@ Produced by andy (わんこ堂) × 熊八 🐾 (Muse Spark). Credit is appreciat
 - **Run non-commercially by its authors.** We do not run this project for revenue: no ads, no affiliate links, no paid placement, and we sell nothing here. That describes how *we* operate — it is **not** a restriction on you. Under CC0 (above), anyone may use the content for any purpose, including commercial use, without permission.
 - **No hostile intent.** Nothing here is intended to attack, overload, disrupt or harm any platform or service. The purpose is the opposite: to help agents use these services correctly, through their official APIs and within their terms. If a provider believes any item here works against that, please open an issue and it will be addressed.
 - **Facts, in our own words.** The content consists of factual information (API hosts, endpoint paths, scope strings, observed platform behaviour) summarised independently from publicly available official documentation and direct experiment. No documentation text, code or images from the companies named have been copied into this repository.
+- **Your build, your responsibility.** This collection is documentation. If you build or operate a connector based on anything here, you do so entirely at your own responsibility, with your own accounts and credentials, and complying with each provider's terms is your responsibility. The authors are not involved in, and accept no responsibility for, connectors built or operated by others.
 - **Corrections and removal.** If you are a rights holder or a service provider and something here concerns you, please open an issue. It will be corrected or removed promptly.

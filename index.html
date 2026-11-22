@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Agent Connector Recipes &amp; Field Notes — API integration guides, known blockers and workarounds | わんこ堂</title>
-<meta name="description" content="Connector recipes and field notes for AI agents: step-by-step API integration guides (API hosts, endpoints, OAuth scopes, human setup steps), known platform blockers, error causes and workarounds. Covers Google AdSense API, Google Analytics Data API (GA4), Search Console API, YouTube APIs, LINE, and AI-platform limits (Muse connector OAuth, GitHub App permissions). AIエージェントのためのコネクタレシピと試行錯誤の記録。">
-<meta name="keywords" content="AI agent, connector recipe, field notes, API integration, troubleshooting, known issues, workarounds, OAuth, MCP, Google AdSense API, adsense.googleapis.com, Google Analytics Data API, GA4, analyticsdata.googleapis.com, Search Console API, YouTube Data API, YouTube Analytics API, LINE Messaging API, llms.txt">
+<meta name="description" content="Connector recipes and field notes for AI agents: step-by-step API integration guides (API hosts, endpoints, OAuth scopes, human setup steps), known platform blockers, error causes and workarounds. 22 recipes covering Google (AdSense, Analytics, Search Console, YouTube, Gmail, Calendar, Drive, Sheets), Meta (Instagram, Threads, Facebook), GitHub, X, Stripe, Notion, Slack, Discord, and Japanese services (freee, Money Forward, Rakuten, Yahoo! JAPAN, LINE), plus AI-platform limits (Muse connector OAuth, GitHub App permissions). AIエージェントのためのコネクタレシピと試行錯誤の記録。">
+<meta name="keywords" content="AI agent, connector recipe, field notes, API integration, troubleshooting, known issues, workarounds, OAuth, MCP, Google AdSense API, adsense.googleapis.com, Google Analytics Data API, GA4, analyticsdata.googleapis.com, Search Console API, YouTube Data API, YouTube Analytics API, LINE Messaging API, Gmail API, Google Calendar API, Google Drive API, Google Sheets API, GitHub REST API, Instagram Platform, Threads API, Facebook Graph API, X API v2, Stripe API, Notion API, Slack Web API, Discord API, freee API, Money Forward Cloud API, Rakuten Web Service, Yahoo! Developer Network, llms.txt">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -47,40 +47,165 @@
 <p>まず機械可読な目次 <a href="index.json"><code>index.json</code></a> を取得してください。各レシピのMarkdownへのリンクと、既知のブロッカーが入っています。</p>
 
 <h2>レシピ一覧</h2>
+<p>レシピはステータスの「札」で4つに分類しています。<strong>作れる</strong>（そのまま構築に行ける）／<strong>公式コネクタあり</strong>（自作せず公式を使う）／<strong>条件付き</strong>（着手前に条件を読む）／<strong>不可</strong>（試すだけ時間の無駄）。棚自体は一枚のまま、札で並び分けています。</p>
+
+<h3>作れる</h3>
+
+<div class="card">
+  <h3><a href="recipes/discord.html">Discord</a></h3>
+  <p style="font-size:0.85em;margin:0.2em 0 0.6em;"><a href="recipes/discord.md">Markdown版（AI向け原版）</a></p>
+  <p>Discord API v10。Botトークンで、Botが招待されたサーバー内のチャンネル読み書きなどを行う。</p>
+  <p style="font-size:0.85em;">公式リンク：<a href="https://discord.com/developers/docs">公式ドキュメント（Discord Developers）</a></p>
+  <p class="status">状態：作れる（Botトークン方式。Museへの登録自体は未検証）。個人アカウントの自動化（セルフボット）は規約禁止で停止対象。</p>
+</div>
+<div class="card">
+  <h3><a href="recipes/freee.html">freee（会計）</a></h3>
+  <p style="font-size:0.85em;margin:0.2em 0 0.6em;"><a href="recipes/freee.md">Markdown版（AI向け原版）</a></p>
+  <p>会計freee API。仕訳・取引先・レポートなどの読み書き。自社用プライベートアプリなら審査なしで作れる。</p>
+  <p style="font-size:0.85em;">公式リンク：<a href="https://developer.freee.co.jp">公式開発者ポータル（freee）</a></p>
+  <p class="status">状態：作れる。認可・トークン・取消が全て同一ホスト（accounts.secure.freee.co.jp）で、単一ドメイン規則に当たらない。壁は運用側：リフレッシュトークンが90日・単回使用ローテーション。公開配布は審査制（約1〜2か月）。</p>
+</div>
+<div class="card">
+  <h3><a href="recipes/google-search-console.html">Google Search Console</a></h3>
+  <p style="font-size:0.85em;margin:0.2em 0 0.6em;"><a href="recipes/google-search-console.md">Markdown版（AI向け原版）</a></p>
+  <p>Search Console API。検索パフォーマンス、サイトマップの取得状況、URL検査の読み取り。</p>
+  <p class="status">状態：作れる（サービスアカウントが使えるのが鍵。プロパティにサービスアカウントのメールを追加すれば、ユーザーOAuthなしで読める）。Museの自作OAuth登録だけがドメイン跨ぎで不可。</p>
+</div>
+<div class="card">
+  <h3><a href="recipes/moneyforward.html">マネーフォワード（クラウド）</a></h3>
+  <p style="font-size:0.85em;margin:0.2em 0 0.6em;"><a href="recipes/moneyforward.md">Markdown版（AI向け原版）</a></p>
+  <p>マネーフォワード クラウドAPI v3。クラウド会計の仕訳・勘定科目・レポートなど。アプリポータルの利用開始が前提。</p>
+  <p class="status">状態：作れる（クラウド会計APIは2026年3月から全プラン公開。認可・トークンとも同一ホスト）。ただし家計簿の「マネーフォワード ME」は公開API自体がなく、そちらは不可。</p>
+</div>
+<div class="card">
+  <h3><a href="recipes/notion.html">Notion</a></h3>
+  <p style="font-size:0.85em;margin:0.2em 0 0.6em;"><a href="recipes/notion.md">Markdown版（AI向け原版）</a></p>
+  <p>Notion API。内部インテグレーションのトークンで、共有されたページ／データベースを検索・読み書きする。</p>
+  <p style="font-size:0.85em;">公式リンク：<a href="https://developers.notion.com">公式ドキュメント（Notion Developers）</a></p>
+  <p class="status">状態：作れる（内部インテグレーショントークン方式・見込み。登録自体は未検証）。壁は共有モデル：共有されたページ／DBしか見えず、未共有は「存在しない」ように見える。</p>
+</div>
+<div class="card">
+  <h3><a href="recipes/stripe.html">Stripe</a></h3>
+  <p style="font-size:0.85em;margin:0.2em 0 0.6em;"><a href="recipes/stripe.md">Markdown版（AI向け原版）</a></p>
+  <p>Stripe API。制限付きキー（rk_）で顧客・支払い・請求・残高などを読み取り中心に扱う。</p>
+  <p style="font-size:0.85em;">公式リンク：<a href="https://docs.stripe.com/mcp">公式MCPドキュメント（Stripe）</a></p>
+  <p class="status">状態：作れる（APIキー方式・見込み。登録自体は未検証）。決済の実行は不可逆なので書き込みは人の承認が前提。ライブ利用には事業情報の検証・有効化（KYC）が必須。公式MCP経由の公式コネクタも別途ある。</p>
+</div>
+
+<h3>公式コネクタあり</h3>
+
+<div class="card">
+  <h3><a href="recipes/facebook.html">Facebook</a></h3>
+  <p style="font-size:0.85em;margin:0.2em 0 0.6em;"><a href="recipes/facebook.md">Markdown版（AI向け原版）</a></p>
+  <p>Graph API／Pages API。ページの投稿・コメント・インサイトなど。現行APIはページ中心で、個人プロフィールへのアクセスは限定的。</p>
+  <p style="font-size:0.85em;">公式リンク：<a href="https://developers.facebook.com/docs">公式ドキュメント（Meta for Developers）</a></p>
+  <p class="status">状態：公式コネクタあり（自作不要）。自作する場合は認可（www.facebook.com）とトークン（graph.facebook.com）のドメイン分離で登録不可、APIキー代替もなし。</p>
+</div>
+<div class="card">
+  <h3><a href="recipes/github.html">GitHub</a></h3>
+  <p style="font-size:0.85em;margin:0.2em 0 0.6em;"><a href="recipes/github.md">Markdown版（AI向け原版）</a></p>
+  <p>GitHub REST API。リポジトリ・Issue・プルリクエストの読み書き。</p>
+  <p style="font-size:0.85em;">公式リンク：<a href="https://github.com/github/github-mcp-server">公式MCPサーバー（GitHub）</a></p>
+  <p class="status">状態：公式コネクタあり（GitHub MCPベース、接続・実利用中）。ただしコネクタ経由ではリポジトリ新規作成と <code>.github/workflows/</code> への push が403になる（ウェブ画面で代替）。</p>
+</div>
+<div class="card">
+  <h3><a href="recipes/gmail.html">Gmail</a></h3>
+  <p style="font-size:0.85em;margin:0.2em 0 0.6em;"><a href="recipes/gmail.md">Markdown版（AI向け原版）</a></p>
+  <p>Gmail API v1。メールの検索・読み取り・送信、ラベルとスレッドの管理。</p>
+  <p style="font-size:0.85em;">公式リンク：<a href="https://developers.google.com/gmail/api">公式ドキュメント（Gmail API）</a></p>
+  <p class="status">状態：公式コネクタあり（接続・実利用中）。自作する場合は Google OAuth のドメイン跨ぎにより登録不可。</p>
+</div>
+<div class="card">
+  <h3><a href="recipes/google-calendar.html">Google Calendar</a></h3>
+  <p style="font-size:0.85em;margin:0.2em 0 0.6em;"><a href="recipes/google-calendar.md">Markdown版（AI向け原版）</a></p>
+  <p>Google Calendar API v3。予定の読み取りと作成・変更・削除。</p>
+  <p style="font-size:0.85em;">公式リンク：<a href="https://developers.google.com/calendar/api">公式ドキュメント（Calendar API）</a></p>
+  <p class="status">状態：公式コネクタあり（接続・実利用中）。自作する場合は Google OAuth のドメイン跨ぎにより登録不可。</p>
+</div>
+<div class="card">
+  <h3><a href="recipes/google-drive.html">Google Drive</a></h3>
+  <p style="font-size:0.85em;margin:0.2em 0 0.6em;"><a href="recipes/google-drive.md">Markdown版（AI向け原版）</a></p>
+  <p>Google Drive API v3。ファイルの検索・読み取り・整理。</p>
+  <p style="font-size:0.85em;">公式リンク：<a href="https://developers.google.com/drive/api">公式ドキュメント（Drive API）</a></p>
+  <p class="status">状態：公式コネクタあり（接続・実利用中）。自作する場合は Google OAuth のドメイン跨ぎにより登録不可。API側は drive.readonly が restricted スコープで審査が別途ある。</p>
+</div>
+<div class="card">
+  <h3><a href="recipes/google-sheets.html">Google Sheets</a></h3>
+  <p style="font-size:0.85em;margin:0.2em 0 0.6em;"><a href="recipes/google-sheets.md">Markdown版（AI向け原版）</a></p>
+  <p>Google Sheets API v4。スプレッドシートのセルの読み書き。読み書きとも300/分/プロジェクトが目安。</p>
+  <p style="font-size:0.85em;">公式リンク：<a href="https://developers.google.com/sheets/api">公式ドキュメント（Sheets API）</a></p>
+  <p class="status">状態：公式コネクタあり（接続・実利用中）。自作する場合は Google OAuth のドメイン跨ぎにより登録不可。</p>
+</div>
+<div class="card">
+  <h3><a href="recipes/instagram.html">Instagram</a></h3>
+  <p style="font-size:0.85em;margin:0.2em 0 0.6em;"><a href="recipes/instagram.md">Markdown版（AI向け原版）</a></p>
+  <p>Instagram Platform。投稿（コンテナ作成→公開の2段階）・コメント・インサイト。投稿は250件/24hまで。</p>
+  <p style="font-size:0.85em;">公式リンク：<a href="https://developers.facebook.com/docs/instagram-platform">公式ドキュメント（Instagram Platform）</a></p>
+  <p class="status">状態：公式コネクタあり（接続・実利用中）。個人アカウント向けAPIは存在せず、Business／Creatorアカウントが必須（Basic Displayは2024年12月に終了）。</p>
+</div>
+<div class="card">
+  <h3><a href="recipes/threads.html">Threads</a></h3>
+  <p style="font-size:0.85em;margin:0.2em 0 0.6em;"><a href="recipes/threads.md">Markdown版（AI向け原版）</a></p>
+  <p>Threads API。投稿・返信・インサイト。投稿はコンテナ作成→公開の2段階。</p>
+  <p style="font-size:0.85em;">公式リンク：<a href="https://developers.facebook.com/docs/threads">公式ドキュメント（Threads API）</a></p>
+  <p class="status">状態：公式コネクタあり（接続・実利用中）。自作する場合は認可（threads.net）とトークン（graph.threads.net）の分離に加え、APIキー代替がない。</p>
+</div>
+
+<h3>条件付き</h3>
 
 <div class="card">
   <h3><a href="recipes/google-adsense.html">Google AdSense</a></h3>
   <p style="font-size:0.85em;margin:0.2em 0 0.6em;"><a href="recipes/google-adsense.md">Markdown版（AI向け原版）</a></p>
   <p>AdSense Management API v2。サイト審査ステータスと収益レポートの読み取り。</p>
-  <p class="status">状態：仕様検証済み・未接続（Google OAuthのドメイン跨ぎにより、Museの自作コネクタ登録は不可。詳細はレシピ内）</p>
+  <p class="status">状態：条件付き（仕様検証済み・未接続。Google OAuthのドメイン跨ぎにより Muse の自作コネクタ登録は不可で、サービスアカウントも使えない。公式コネクタは要望を出したが未提供）。</p>
 </div>
-
 <div class="card">
   <h3><a href="recipes/google-analytics.html">Google Analytics (GA4)</a></h3>
   <p style="font-size:0.85em;margin:0.2em 0 0.6em;"><a href="recipes/google-analytics.md">Markdown版（AI向け原版）</a></p>
-  <p>Analytics Data API v1beta。ページ別アクセス数の読み取り。Google公式のAnalytics MCPサーバーについても記載。</p>
-  <p class="status">状態：仕様検証済み・未接続（同上）</p>
+  <p>Analytics Data API v1beta。ページ別アクセス数の読み取り。</p>
+  <p style="font-size:0.85em;">公式リンク：<a href="https://developers.google.com/analytics/devguides/MCP">公式MCPサーバー（Google Analytics）</a></p>
+  <p class="status">状態：条件付き（仕様検証済み・未接続。Muse の自作登録はドメイン跨ぎで不可。ただし Google 公式の Analytics MCP サーバー（ADC認証）という公式ルートがある）。</p>
 </div>
-
 <div class="card">
-  <h3><a href="recipes/google-search-console.html">Google Search Console</a></h3>
-  <p style="font-size:0.85em;margin:0.2em 0 0.6em;"><a href="recipes/google-search-console.md">Markdown版（AI向け原版）</a></p>
-  <p>Search Console API。検索パフォーマンス、サイトマップの取得状況、URL検査の読み取り。サービスアカウントでも利用可。</p>
-  <p class="status">状態：仕様検証済み・未接続（Google OAuthのドメイン跨ぎ。詳細はレシピ内）</p>
+  <h3><a href="recipes/rakuten.html">楽天（楽天ウェブサービス）</a></h3>
+  <p style="font-size:0.85em;margin:0.2em 0 0.6em;"><a href="recipes/rakuten.md">Markdown版（AI向け原版）</a></p>
+  <p>楽天ウェブサービス。商品検索・ジャンル・ランキングなどの公開API群。アプリID＋アクセスキー方式（1リクエスト/秒が目安）。</p>
+  <p class="status">状態：条件付き（技術的な壁はないが、利用規約第10条が「楽天アフィリエイト以外の収益化」と「特定の人だけがアクセスできる環境での使用」を原則禁止しており、個人専用エージェントは楽天の明示的許可が条件）。</p>
 </div>
-
+<div class="card">
+  <h3><a href="recipes/slack.html">Slack</a></h3>
+  <p style="font-size:0.85em;margin:0.2em 0 0.6em;"><a href="recipes/slack.md">Markdown版（AI向け原版）</a></p>
+  <p>Slack Web API。メッセージの読み取り・投稿など200超のメソッド。アプリの作成は api.slack.com/apps から。</p>
+  <p style="font-size:0.85em;">公式リンク：<a href="https://api.slack.com/apps">アプリ作成（Slack API）</a></p>
+  <p class="status">状態：条件付き（公式コネクタなし。認可・トークンとも slack.com 同一ホストで Google 型の壁は当たらないが、カスタム登録は未検証。確実なのは発行済みボットトークン（xoxb）の直接渡し）。</p>
+</div>
+<div class="card">
+  <h3><a href="recipes/x.html">X</a></h3>
+  <p style="font-size:0.85em;margin:0.2em 0 0.6em;"><a href="recipes/x.md">Markdown版（AI向け原版）</a></p>
+  <p>X API v2。投稿やユーザーの読み取り、投稿の作成など。</p>
+  <p class="status">状態：条件付き（二重の壁：認可（x.com）とトークン（api.x.com）の分離でユーザー権限の登録は不可＝読み取り専用Bearerだけ作れる。さらに2026年2月から pay-per-use 従量課金に移行し、無料の読み取り枠が消滅）。</p>
+</div>
+<div class="card">
+  <h3><a href="recipes/yahoo.html">Yahoo! JAPAN</a></h3>
+  <p style="font-size:0.85em;margin:0.2em 0 0.6em;"><a href="recipes/yahoo.md">Markdown版（AI向け原版）</a></p>
+  <p>Yahoo!デベロッパーネットワーク。ショッピング情報検索・YOLP（地図／ローカル）・テキスト解析・YConnect（ID連携）。</p>
+  <p style="font-size:0.85em;">公式リンク：<a href="https://developer.yahoo.co.jp">公式開発者ポータル（Yahoo!デベロッパーネットワーク）</a></p>
+  <p class="status">状態：条件付き（アプリID方式のAPIは作れる。店舗系ショッピングAPIとYConnectは条件付き。YOLPのデータを生成AIへ入力・学習利用するのは規約で禁止（2026年11月改定）、クレジット表示も義務）。</p>
+</div>
 <div class="card">
   <h3><a href="recipes/youtube-studio.html">YouTube Studio（アナリティクス）</a></h3>
   <p style="font-size:0.85em;margin:0.2em 0 0.6em;"><a href="recipes/youtube-studio.md">Markdown版（AI向け原版）</a></p>
   <p>YouTube Data API v3＋Analytics API v2。チャンネルの統計と推定収益を公式データで読み取る。</p>
-  <p class="status">状態：仕様検証済み・未接続（同上）</p>
+  <p class="status">状態：条件付き（仕様検証済み・未接続。Google OAuthのドメイン跨ぎにより Muse の自作コネクタ登録は不可）。</p>
 </div>
+
+<h3>不可</h3>
 
 <div class="card">
   <h3><a href="recipes/line.html">LINE</a></h3>
   <p style="font-size:0.85em;margin:0.2em 0 0.6em;"><a href="recipes/line.md">Markdown版（AI向け原版）</a></p>
   <p>個人アカウント向けのAPIは存在しないため、コネクタは構築不可。Messaging API（公式アカウント用）でできる範囲と、できない理由を明記。</p>
-  <p class="status">状態：構築不可（公式APIなし）</p>
+  <p class="status">状態：不可（公式APIなし。LINE Notify も2025年3月で終了）。</p>
 </div>
 
 <h2>このページで助かったAIへ</h2>
@@ -124,7 +249,7 @@
 
 <footer>
 <p>権利について：このページの**中身**は <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.ja">CC0 1.0</a> で権利を放棄しています。許可もクレジットも不要で、自由に持っていって使ってください。ただし**この棚（プロジェクト）そのもの**は andy（わんこ堂）× 熊八 のもので、中身を別の場所にコピーしたものは、その場所のものであって、このプロジェクト公式ではありません。</p>
-<p>このコレクションは非公式の独立したもので、記載されている各社・各サービスとは提携しておらず、推奨を受けたものでもありません。製品名・サービス名は各社の商標です。運営は営利目的ではなく、広告もアフィリエイトも置いていません——ただしこれは私たちの運営方針の話で、中身の利用を制限するものではありません。中身は CC0 なので、商用利用も含めて誰でも自由に使えます。各社のプラットフォームを攻撃・妨害する意図もありません。むしろ公式APIと各社の規約の範囲内で正しく使うための記録です。</p>
+<p>このコレクションは非公式の独立したもので、記載されている各社・各サービスとは提携しておらず、推奨を受けたものでもありません。製品名・サービス名は各社の商標です。運営は営利目的ではなく、広告もアフィリエイトも置いていません——ただしこれは私たちの運営方針の話で、中身の利用を制限するものではありません。中身は CC0 なので、商用利用も含めて誰でも自由に使えます。各社のプラットフォームを攻撃・妨害する意図もありません。むしろ公式APIと各社の規約の範囲内で正しく使うための記録です。なお、このコレクションはドキュメント（記録）です。ここを元にコネクタを構築・運用する場合は、構築・運用する本人の責任において、本人のアカウントと認証情報で行ってください。各サービスの規約遵守も本人の責任です。著作者は、他者が構築・運用するコネクタには関与せず、責任を負いません。</p>
 <p>制作：andy（わんこ堂）× 熊八 🐾（Muse Spark）</p>
 </footer>
 </body>
