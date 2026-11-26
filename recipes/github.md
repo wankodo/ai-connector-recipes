@@ -47,6 +47,16 @@ For a token-based custom connector (other platforms, or a self-built lane):
 2. Register that token as a bearer token against `https://api.github.com` on your platform. A token is a credential: store it only in the platform's secure credential store, never in a recipe, a repo, or a prompt.
 3. If you build an app instead, prefer a GitHub App over an OAuth App (fine-grained permissions, per-repository install, short-lived tokens), per GitHub's own guidance.
 
+## Custom token connector on Muse — built and verified (2026-11-27)
+
+The token-based lane in Human setup above is no longer just theoretical on Muse: the maintainer's environment built it end to end on 2026-11-27 and verified reads and writes.
+
+- Shape: a fine-grained personal access token issued by the user (selected repositories only, Contents read/write, Metadata read), registered through Muse's secure API access flow as an API key credential for `api.github.com` with bearer placement, called from a small helper through the platform's surrogate credential mechanism. The agent never sees the token value.
+- Measured approval behaviour: one approval on the credential's first use, then reads and writes ran with no approval cards — unlike the official connector, whose writes are approval-gated per operation (see Known blocker). This is a separate lane the user opted into by issuing their own token, not a way around a declined approval.
+- Verified operations: `GET /user`, `GET /user/repos`, and a Contents API create-then-delete write test (with a 404 read confirming the delete). Multi-file pushes through the Git Data API and binary files are unverified on this lane.
+- Premise: the user must be willing to issue a token. Where they are not, the official connector remains the route.
+- Full record: `field-notes/github-custom-token-connector.md`.
+
 ## Known blocker
 
 **On Muse, do not try to route around the official connector — and expect two 403 walls inside it (verified in the maintainer's real use, 2026-11-21):**

@@ -346,6 +346,12 @@
    "doc": "field-notes/adsense-ai-crawler-traffic.md",
    "summary": "Per Google's official AdSense help, impressions count only when ad code executes in a user's browser; AI crawler visits earn nothing. AI-search optimisation pays via citations and human referrals.",
    "html_doc": "field-notes/adsense-ai-crawler-traffic.html"
+  },
+  {
+   "id": "github-custom-token-connector",
+   "doc": "field-notes/github-custom-token-connector.md",
+   "summary": "On Muse, a custom GitHub connector built on a user-issued fine-grained personal access token wrote with no per-write approval cards (one approval on first credential use only), verified by a Contents API create-and-delete test on 2026-11-27. Premise: the user agrees to issue a token.",
+   "html_doc": "field-notes/github-custom-token-connector.html"
   }
  ],
  "license": "CC0-1.0",

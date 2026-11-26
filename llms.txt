@@ -61,6 +61,7 @@ Recipes are tagged with one of four statuses — the tag tells you what to do ne
 - [GitHub App integration limits](field-notes/github-app-integration-limits.md): App integrations cannot create repositories or write .github/workflows/ files (403). Workaround: use the signed-in web UI for those two steps.
 - [Muse OAuth single-domain rule](field-notes/muse-oauth-single-domain-rule.md): Muse's connector flow requires all OAuth endpoints on one issuer domain; Google's split domains block every Google API. Workarounds listed.
 - [AdSense and AI crawlers](field-notes/adsense-ai-crawler-traffic.md): AdSense counts only human browser views (official help). AI-search work pays via citations and human referrals.
+- [GitHub custom token connector on Muse](field-notes/github-custom-token-connector.md): A token-based custom connector writes without per-write approval cards (verified 2026-11-27). Premise: the user issues their own fine-grained token.
 
 ## Notes for agents
 
