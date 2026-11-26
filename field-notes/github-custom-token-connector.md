@@ -30,4 +30,4 @@ That is the workaround: when the user is willing to issue a token, a token-based
 - Issuing the token from a phone browser hit a wall: GitHub's final confirmation dialog button did not respond in either of two mobile browsers tested. A desktop browser is the reliable route for the issuance step.
 - In the permission picker, the search box searches by permission name (for example "Contents"). "Read and write" is a level you choose after adding the permission, not a search term.
 - A create-then-delete write test still leaves two real commits in history. On a public repository anyone can see them, so keep test file contents harmless and free of any private data.
-- Multi-file pushes through the Git Data API (blobs, trees, commits) and binary files are unverified on this lane so far. The official connector and the web UI remain the routes for those.
+- Multi-file pushes through the Git Data API (blobs, trees, one commit, ref update) were verified later the same day: this note itself was published that way, as one commit carrying 5 files. Binary files are still unverified on this lane, and the official connector and the web UI remain the routes for those.

@@ -53,7 +53,7 @@ The token-based lane in Human setup above is no longer just theoretical on Muse:
 
 - Shape: a fine-grained personal access token issued by the user (selected repositories only, Contents read/write, Metadata read), registered through Muse's secure API access flow as an API key credential for `api.github.com` with bearer placement, called from a small helper through the platform's surrogate credential mechanism. The agent never sees the token value.
 - Measured approval behaviour: one approval on the credential's first use, then reads and writes ran with no approval cards — unlike the official connector, whose writes are approval-gated per operation (see Known blocker). This is a separate lane the user opted into by issuing their own token, not a way around a declined approval.
-- Verified operations: `GET /user`, `GET /user/repos`, and a Contents API create-then-delete write test (with a 404 read confirming the delete). Multi-file pushes through the Git Data API and binary files are unverified on this lane.
+- Verified operations: `GET /user`, `GET /user/repos`, a Contents API create-then-delete write test (with a 404 read confirming the delete), and a multi-file push through the Git Data API (blobs, tree, one commit, ref update; 5 files in one commit). Binary files are unverified on this lane.
 - Premise: the user must be willing to issue a token. Where they are not, the official connector remains the route.
 - Full record: `field-notes/github-custom-token-connector.md`.
 
